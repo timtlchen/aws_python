@@ -1,5 +1,6 @@
-import tinys3
 import sys
+sys.path.append("usr/local/lib/python2.7/dist-packages/tinys3");
+import tinys3
 
 AWS_ACCESS_KEY_ID = sys.argv[1]
 AWS_SECRET_ACCESS_KEY = sys.argv[2]
