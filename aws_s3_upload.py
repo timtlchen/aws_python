@@ -1,17 +1,12 @@
 import sys
-sys.path.append("usr/local/lib/python2.7/dist-packages/tinys3");
 import tinys3
 
-AWS_ACCESS_KEY_ID = sys.argv[1]
-AWS_SECRET_ACCESS_KEY = sys.argv[2]
-bucket_name = sys.argv[3]
+class aws_s3_upload:
+    def __init__(self,aws_id,aws_key,aws_bucket):
+        conn = tinys3.Connection(aws_id,aws_key,tls=True,endpoint='ap-southeast-1.amazonaws.com')
+        f = open('/opt/aws_python/test.txt','rb')
+        print conn.upload('test1.txt',f,aws_bucket)
+        print conn.get('test1.txt',aws_bucket)
 
-print("debug0")
-
-conn = tinys3.Connection(AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,tls=True,endpoint='ap-southeast-1.amazonaws.com')
-
-print("debug1")
-
-f = open('test.txt','rb')
-print conn.upload('test1.txt',f,bucket_name)
-print conn.get('test1.txt',bucket_name)
+c = aws_s3_upload(aws_id,aws_key,aws_bucket)
+result = "[" + c.result + "]"
