@@ -6,8 +6,8 @@ import tinys3
 class S3ApiService(object):
     def upload_file(self,aws_id,aws_key,aws_bucket,filenm,filepath):
         conn = tinys3.Connection(aws_id,aws_key,tls=True,endpoint='ap-southeast-1.amazonaws.com')
-        with open("{0}/{1}".format(filepath,filenm), 'rb') as f
-            conn.upload(filenm,f,aws_bucket)
+        with open("{0}/{1}".format(filepath,filenm), 'rb') as f:
+            return conn.upload(filenm,f,aws_bucket)
         
 
 daemon = Pyro4.Daemon()                # make a Pyro daemon
